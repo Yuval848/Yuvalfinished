@@ -126,8 +126,9 @@ public class BoardGame extends View {
     public void setNewWord(int row,String userguess) {
         for (int i = 0; i < 5; i++) {
             gridCells[row][i].setChar(userguess.charAt(i));
-            invalidate();
+
         }
+        invalidate();
 
 
     }

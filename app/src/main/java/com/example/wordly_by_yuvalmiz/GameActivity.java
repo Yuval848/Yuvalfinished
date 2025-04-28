@@ -35,10 +35,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     int sound1,sound2;
     FbModuleGame fbModuleGame;
 
-    LinearLayout linearLayout,
-            linearLayout1,
-            linearLayout2,//for all the cells of the guesses
-            linearLayout3;
+    LinearLayout linearLayout, linearLayout1, linearLayout2,linearLayout3;
     KeyboardView m;
     Button save,quit;
 
@@ -114,7 +111,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             public void onInit(int status) {
                 if(status == TextToSpeech.SUCCESS)
                 {
-                    int lang = textToSpeech.setLanguage(Locale.ENGLISH);
+                    textToSpeech.setLanguage(Locale.ENGLISH);
                 }
             }
         });
@@ -154,7 +151,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         } catch (ExecutionException e) {
             throw new RuntimeException(e);
         } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+                throw new RuntimeException(e);
         }
         targetWord = result.replaceAll("[\\[\\]\" ]", "");
         Toast.makeText(this, ""+targetWord, Toast.LENGTH_SHORT).show();
@@ -226,18 +223,12 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                     if (userGuess.charAt(i) == targetWord.charAt(i)) {
                         boardGame.setCellBackgroundColor(attempts, i, Color.GREEN);
                         Greenflag++;
-                    }
-                    else if (YellowSquare(userGuess.charAt(i)))
+                    } else if (YellowSquare(userGuess.charAt(i)))
                         boardGame.setCellBackgroundColor(attempts, i, Color.YELLOW);
                     else
                         boardGame.setCellBackgroundColor(attempts, i, Color.RED);
-
-
                 }
-                for (int i = 0; i < 5; i++) {
-                    boardGame.setNewWord(attempts,userGuess);
-
-                }
+                boardGame.setNewWord(attempts,userGuess);
                 attempts++;
             }
 
@@ -246,7 +237,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                 soundPool.play(sound2,1,1,0,3,1);
                 textToSpeech.speak("Congratulation you have won", TextToSpeech.QUEUE_FLUSH, null);
                 boardGame.triggerWinAnimation(); // 💥 START THE SPARKLE SHOW
-
+                fbModuleGame.WinState();
                 createDialog();
             }
             Greenflag =0;

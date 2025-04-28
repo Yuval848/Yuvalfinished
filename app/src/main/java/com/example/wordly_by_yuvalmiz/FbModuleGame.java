@@ -64,6 +64,9 @@ public class FbModuleGame {
             return true;
         return false;
     }
+    public void WinState(){
+        userguesses.clear();
+    }
 
     public ArrayList<String> ReturnSavedGuesses() {
         return userguesses;
