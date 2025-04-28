@@ -245,6 +245,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         if(attempts == 6)
         {
             soundPool.play(sound1,1,1,0,0,1);
+            fbModuleGame.WinState();
             createDialog();
         }
 
